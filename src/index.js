@@ -89,6 +89,9 @@
     beforeDatasetsUpdate: function(chartInstance, pluginOptions) {
       if (!pluginOptions.enable) return;
 
+      // set axis as they may not be set if Chart was created first with plugin disabled
+      this.beforeInit(chartInstance, pluginOptions);
+
       setOriginalData(chartInstance.data);
       calculateRate(chartInstance.data);
       reflectData(chartInstance.data.calculatedData, chartInstance.data.datasets);
